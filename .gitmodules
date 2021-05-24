@@ -1,0 +1,9 @@
+[submodule "connectors"]
+	path = connectors
+	url = https://github.com/JackS9/connectors.git
+[submodule "processors"]
+	path = processors
+	url = https://github.com/JackS9/processors.git
+[submodule "workflows"]
+	path = workflows
+	url = https://github.com/JackS9/workflows.git

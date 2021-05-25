@@ -2,8 +2,8 @@ FROM centos:centos7
 
 RUN yum -y update | /bin/true
 
-RUN groupadd --gid 808 js-group
-RUN useradd --gid 808 --uid 550 --create-home --password 'jacks9' jacks9
+RUN groupadd --gid 808 geoedf
+RUN useradd --gid 808 --uid 501 --create-home --password 'jacks9' jacks9
 
 # Configure Sudo
 RUN echo -e "jacks9 ALL=(ALL)       NOPASSWD:ALL\n" >> /etc/sudoers
@@ -163,18 +163,18 @@ RUN pip3 install geopandas folium
 # GeoEDF specific section ends
 # ------------------------------
 
-RUN mkdir /home/jacks9/geoedf
+RUN mkdir /home/jacks9/geoedf-dev
 
-ADD --chown=jacks9:js-group ./geoedf /home/jacks9/geoedf
+#ADD --chown=jacks9:geoedf ./geoedf /home/jacks9/geoedf
 
-WORKDIR /home/jacks9/geoedf
+WORKDIR /home/jacks9/geoedf-dev
 
-COPY --chown=jacks9:js-group runjupyter.sh /home/jacks9/
+#COPY --chown=jacks9:geoedf runjupyter.sh /home/jacks9/geoedf-dev
 
-RUN chmod +x /home/jacks9/runjupyter.sh
+#RUN chmod +x /home/jacks9/geoedf-dev/runjupyter.sh
 
 # wrapdocker required for nested docker containers
 #ENTRYPOINT ["sudo", "/usr/local/bin/wrapdocker"]
 #CMD ["su", "-", "jacks9", "-c", "jupyter notebook --notebook-dir=/home/jacks9/geoedf --NotebookApp.token='' --NotebookApp.password='' --port=8888 --no-browser --ip=0.0.0.0 --allow-root"] 
 #ENTRYPOINT ["jupyter", "notebook", "--notebook-dir=/home/jacks9/geoedf", "--NotebookApp.token=''", "--NotebookApp.password=''", "--port=8888", "--no-browser", "--ip=0.0.0.0", "--allow-root"]
-CMD ["/home/jacks9/runjupyter.sh"]
+#CMD ["/home/jacks9/runjupyter.sh"]

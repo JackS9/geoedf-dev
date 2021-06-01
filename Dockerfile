@@ -157,7 +157,7 @@ RUN python3 -m pip install -U pip
 
 USER jacks9
 
-RUN pip3 install geopandas folium
+RUN pip3 install geoedfframework geopandas folium
 
 # ------------------------------
 # GeoEDF specific section ends
